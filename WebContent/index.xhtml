@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+	<title>Alunos</title>
+</h:head> 
+<h:body>
+	<div>
+		<h:form>
+			<div>			
+				<h:panelGrid columns="2">
+					<f:facet name="header">Cadastro de Alunos</f:facet>
+					<h:outputLabel value="Nome:" />
+					<h:inputText value="#{crudBean.aluno.nome}"  />
+					<h:outputLabel value="Curso" />
+					<h:inputText value="#{crudBean.aluno.curso}" />
+					<h:commandButton action="#{crudBean.salvar()}" value="ok" />					
+				</h:panelGrid>				
+			</div>
+			<div>
+					<h:dataTable value="#{crudBean.alunos}" var="item" width="100%">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Id" />
+							</f:facet>
+							<h:outputText value="#{item.id}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Nome" />
+							</f:facet>
+							<h:outputText value="#{item.nome}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Curso" />							
+							</f:facet>
+							<h:outputText value="#{item.curso}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Ações" />
+							</f:facet>
+							<h:commandLink action="#{crudBean.editar(item)}" value="Editar" />|
+							<h:commandLink action="#{crudBean.remove(item)}" value="Excluir" />
+						</h:column>
+					</h:dataTable>
+				</div>
+			</h:form>
+	</div>
+</h:body> 
+</html>
